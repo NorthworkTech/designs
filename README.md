@@ -1,6 +1,6 @@
-# Northwork
+# Northdraft Studios
 
-The official website for **Northwork** — a graphic design studio
+The official website for **Northdraft Studios** — a graphic design studio
 offering logos, print, presentations, websites, and physical products.
 
 A clean, editorial single-page site built with **React + Vite**,
@@ -20,7 +20,7 @@ deployed on **Cloudflare Pages** at **designs.northwork.app**.
 | `src/main.jsx` | App bootstrap |
 | `src/App.jsx` | Page sections (Nav, Hero, Services, Products, Reviews, FAQ, Contact, Footer) |
 | `src/styles.css` | Styling and responsive layout |
-| `public/logo.svg` | Brand logo + favicon (placeholder — swap for the real Northwork logo) |
+| `public/logo.svg` | Brand logo + favicon (placeholder — swap for the real Northdraft Studios logo) |
 | `public/_redirects` | Cloudflare Pages SPA fallback |
 
 ## Local development

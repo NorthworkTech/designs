@@ -34,7 +34,7 @@ const GALLERY = [];
 
 const FAQS = [
   {
-    q: 'What services does Northwork offer?',
+    q: 'What services does Northdraft Studios offer?',
     a: "We're an online graphic design studio. Our specialties include custom logo and icon design, posters and flyers, presentations, business cards and stickers, and full websites. If you need something design-related that isn't listed, just ask.",
   },
   {
@@ -114,7 +114,7 @@ function Nav() {
       <div className="nav-inner">
         <a href="#top" className="brand">
           <img src="/logo.svg" alt="" className="brand-logo" />
-          Northwork<span>Designs</span>
+          Northdraft<span>Studios</span>
         </a>
         <nav className="nav-links">
           <a href="#services">Services</a>
@@ -160,7 +160,7 @@ function Hero() {
   return (
     <section className="hero" id="top">
       <div className="hero-content">
-        <p className="eyebrow reveal in">Northwork</p>
+        <p className="eyebrow reveal in">Northdraft Studios</p>
         <HeroHeadline />
         <p className="hero-sub reveal in" style={{ transitionDelay: '520ms' }}>
           An online graphic design studio specializing in custom logo design — plus print,
@@ -453,19 +453,19 @@ function Footer() {
       <div className="footer-inner">
         <span className="brand brand-footer">
           <img src="/logo.svg" alt="" className="brand-logo" />
-          Northwork<span>Designs</span>
+          Northdraft<span>Studios</span>
         </span>
         <a
           className="social"
           href="https://dribbble.com/northwork"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Northwork on Dribbble"
+          aria-label="Northdraft Studios on Dribbble"
         >
           <DribbbleIcon size={22} />
           <span>Dribbble</span>
         </a>
-        <p>© {new Date().getFullYear()} Northwork. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Northdraft Studios. All rights reserved.</p>
       </div>
     </footer>
   );
