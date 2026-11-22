@@ -18,7 +18,7 @@ const SERVICES = [
   },
   {
     num: '04',
-    title: 'Wix Websites',
+    title: 'Websites',
     body: 'Our design team builds a fabulous website tailored to your needs — all at an affordable price.',
   },
   {

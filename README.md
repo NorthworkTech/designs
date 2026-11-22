@@ -62,7 +62,7 @@ wrangler pages deploy dist --project-name=northwork
 ## Content sections
 
 - **Hero** — brand intro and primary call to action
-- **Services** — list + live preview (Logos, Posters & Flyers, Presentations, Wix Websites, Business Cards & Stickers)
+- **Services** — list + live preview (Logos, Posters & Flyers, Presentations, Websites, Business Cards & Stickers)
 - **Products** — physical product offering (the only "Get a Quote")
 - **Reviews** — client testimonial
 - **FAQ** — common questions (with FAQ structured data)
