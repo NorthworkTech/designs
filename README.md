@@ -1,10 +1,10 @@
-# BigHappySmiley Designs
+# Northwork
 
-The official website for **BigHappySmiley Designs** — a graphic design studio
+The official website for **Northwork** — a graphic design studio
 offering logos, print, presentations, websites, and physical products.
 
-A clean, professional, Apple-inspired single-page site built with **React + Vite**,
-ready for one-click deployment on **Netlify**.
+A clean, editorial single-page site built with **React + Vite**,
+deployed on **Cloudflare Pages** at **designs.northwork.app**.
 
 ## Tech stack
 
@@ -18,10 +18,10 @@ ready for one-click deployment on **Netlify**.
 |------|---------|
 | `index.html` | Vite entry HTML |
 | `src/main.jsx` | App bootstrap |
-| `src/App.jsx` | Page sections (Nav, Hero, Services, Products, Reviews, Contact, Footer) |
+| `src/App.jsx` | Page sections (Nav, Hero, Services, Products, Reviews, FAQ, Contact, Footer) |
 | `src/styles.css` | Styling and responsive layout |
-| `public/logo.svg` | Brand logo + favicon |
-| `netlify.toml` | Netlify build + SPA redirect config |
+| `public/logo.svg` | Brand logo + favicon (placeholder — swap for the real Northwork logo) |
+| `public/_redirects` | Cloudflare Pages SPA fallback |
 
 ## Local development
 
@@ -37,33 +37,36 @@ npm run build    # outputs static site to dist/
 npm run preview  # preview the built site locally
 ```
 
-## Deploy to Netlify
+## Deploy to Cloudflare Pages
 
-This repo is preconfigured (`netlify.toml`) — Netlify auto-detects the build
-command (`npm run build`) and publish directory (`dist`).
+**Git-based (recommended, continuous deploy):**
 
-**Option A — Git-based (recommended, continuous deploy):**
+1. In the [Cloudflare dashboard](https://dash.cloudflare.com/) → **Workers & Pages → Create → Pages → Connect to Git**.
+2. Pick the `bighappysmiley/designs` repo and this branch.
+3. Build settings:
+   - **Framework preset:** Vite (or None)
+   - **Build command:** `npm run build`
+   - **Build output directory:** `dist`
+4. **Save and Deploy.** Every push redeploys. `public/_redirects` handles SPA routing.
+5. **Custom domain:** project → **Custom domains → Set up a domain** → `designs.northwork.app`
+   (Cloudflare adds the DNS record automatically if `northwork.app` is on this account).
 
-1. Push this branch to GitHub (already done).
-2. In the [Netlify dashboard](https://app.netlify.com/) → **Add new site → Import an existing project**.
-3. Connect the `bighappysmiley/designs` repo and pick this branch.
-4. Netlify reads `netlify.toml` — just click **Deploy**. Every push redeploys.
-
-**Option B — Netlify CLI:**
+**CLI (optional):**
 
 ```bash
-npm install -g netlify-cli
-netlify deploy --build            # draft/preview URL
-netlify deploy --build --prod     # production
+npm install -g wrangler
+npm run build
+wrangler pages deploy dist --project-name=northwork
 ```
 
 ## Content sections
 
 - **Hero** — brand intro and primary call to action
-- **Services** — Logos & Icons, Posters & Flyers, Presentations, Wix Websites, Business Cards & Stickers
-- **Products** — physical product offering
+- **Services** — list + live preview (Logos, Posters & Flyers, Presentations, Wix Websites, Business Cards & Stickers)
+- **Products** — physical product offering (the only "Get a Quote")
 - **Reviews** — client testimonial
-- **Contact** — designs@bighappysmiley.com · (845) 213-2071
+- **FAQ** — common questions (with FAQ structured data)
+- **Contact** — message form (opens an email draft) plus Dribbble, email, phone
 
 ## Editing
 

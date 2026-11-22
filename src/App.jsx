@@ -34,7 +34,7 @@ const GALLERY = [];
 
 const FAQS = [
   {
-    q: 'What services does BigHappySmiley Designs offer?',
+    q: 'What services does Northwork offer?',
     a: "We're an online graphic design studio. Our specialties include custom logo and icon design, posters and flyers, presentations, business cards and stickers, and full websites. If you need something design-related that isn't listed, just ask.",
   },
   {
@@ -113,8 +113,8 @@ function Nav() {
     <header className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-inner">
         <a href="#top" className="brand">
-          <img src="/logo.png" alt="" className="brand-logo" />
-          BigHappySmiley<span>Designs</span>
+          <img src="/logo.svg" alt="" className="brand-logo" />
+          Northwork<span>Designs</span>
         </a>
         <nav className="nav-links">
           <a href="#services">Services</a>
@@ -160,7 +160,7 @@ function Hero() {
   return (
     <section className="hero" id="top">
       <div className="hero-content">
-        <p className="eyebrow reveal in">BigHappySmiley Designs</p>
+        <p className="eyebrow reveal in">Northwork</p>
         <HeroHeadline />
         <p className="hero-sub reveal in" style={{ transitionDelay: '520ms' }}>
           An online graphic design studio specializing in custom logo design — plus print,
@@ -376,22 +376,16 @@ function Faq() {
 
 function Contact() {
   const [sent, setSent] = useState(false);
-  const [sending, setSending] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setSending(true);
-    const body = new URLSearchParams(new FormData(e.target)).toString();
-    try {
-      await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body,
-      });
-    } catch {
-      /* Netlify records the submission even if the response is opaque */
-    }
-    setSending(false);
+    const fd = new FormData(e.target);
+    const name = (fd.get('name') || '').toString();
+    const email = (fd.get('email') || '').toString();
+    const message = (fd.get('message') || '').toString();
+    const subject = encodeURIComponent(`New project inquiry from ${name}`);
+    const bodyText = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
+    window.location.href = `mailto:designs@bighappysmiley.com?subject=${subject}&body=${bodyText}`;
     setSent(true);
   };
 
@@ -408,22 +402,11 @@ function Contact() {
           <div className="contact-form-wrap">
             {sent ? (
               <div className="contact-thanks">
-                <h3>Thanks — your message is on its way.</h3>
-                <p>We'll get back to you at the email you provided. Talk soon!</p>
+                <h3>Your email is ready.</h3>
+                <p>We opened a draft in your mail app — hit send and we'll get right back to you.</p>
               </div>
             ) : (
-              <form
-                name="contact"
-                method="POST"
-                data-netlify="true"
-                netlify-honeypot="bot-field"
-                onSubmit={handleSubmit}
-                className="contact-form"
-              >
-                <input type="hidden" name="form-name" value="contact" />
-                <p className="hp" hidden>
-                  <label>Don't fill this out: <input name="bot-field" /></label>
-                </p>
+              <form onSubmit={handleSubmit} className="contact-form">
                 <div className="field">
                   <label htmlFor="cf-name">Name</label>
                   <input id="cf-name" name="name" type="text" autoComplete="name" required />
@@ -436,9 +419,7 @@ function Contact() {
                   <label htmlFor="cf-message">Message</label>
                   <textarea id="cf-message" name="message" rows="4" required />
                 </div>
-                <button type="submit" className="btn btn-primary" disabled={sending}>
-                  {sending ? 'Sending…' : 'Send message'}
-                </button>
+                <button type="submit" className="btn btn-primary">Send message</button>
               </form>
             )}
           </div>
@@ -471,20 +452,20 @@ function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <span className="brand brand-footer">
-          <img src="/logo.png" alt="" className="brand-logo" />
-          BigHappySmiley<span>Designs</span>
+          <img src="/logo.svg" alt="" className="brand-logo" />
+          Northwork<span>Designs</span>
         </span>
         <a
           className="social"
           href="https://dribbble.com/bighappysmiley"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="BigHappySmiley Designs on Dribbble"
+          aria-label="Northwork on Dribbble"
         >
           <DribbbleIcon size={22} />
           <span>Dribbble</span>
         </a>
-        <p>© {new Date().getFullYear()} BigHappySmiley Designs. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Northwork. All rights reserved.</p>
       </div>
     </footer>
   );

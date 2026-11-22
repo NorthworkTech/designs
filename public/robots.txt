@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://designs.bhswebsite.org/sitemap.xml
+Sitemap: https://designs.northwork.app/sitemap.xml
