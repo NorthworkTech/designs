@@ -94,7 +94,7 @@ section[id] { scroll-margin-top: 60px; }
   gap: 0.6rem;
 }
 .brand span { color: var(--faint); font-weight: 400; margin-left: 2px; }
-.brand-logo { width: 30px; height: 30px; display: block; }
+.brand-logo { height: 24px; width: auto; display: block; }
 .nav-links { display: flex; gap: 2.4rem; }
 .nav-links a {
   font-size: 0.92rem;

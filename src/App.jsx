@@ -113,7 +113,7 @@ function Nav() {
     <header className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-inner">
         <a href="#top" className="brand">
-          <img src="/logo.svg" alt="" className="brand-logo" />
+          <img src="/logo.png" alt="" className="brand-logo" />
           Northdraft<span>Studios</span>
         </a>
         <nav className="nav-links">
@@ -452,7 +452,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <span className="brand brand-footer">
-          <img src="/logo.svg" alt="" className="brand-logo" />
+          <img src="/logo.png" alt="" className="brand-logo" />
           Northdraft<span>Studios</span>
         </span>
         <a
