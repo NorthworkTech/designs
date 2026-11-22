@@ -63,7 +63,7 @@ const FAQS = [
   },
   {
     q: 'How do I get started?',
-    a: 'Email us at designs@bighappysmiley.com or call (845) 213-2071 with a bit about your project, and we\'ll reply with next steps and a quote.',
+    a: 'Email us at designs@northwork.app or call (845) 213-2071 with a bit about your project, and we\'ll reply with next steps and a quote.',
   },
 ];
 
@@ -385,7 +385,7 @@ function Contact() {
     const message = (fd.get('message') || '').toString();
     const subject = encodeURIComponent(`New project inquiry from ${name}`);
     const bodyText = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
-    window.location.href = `mailto:designs@bighappysmiley.com?subject=${subject}&body=${bodyText}`;
+    window.location.href = `mailto:designs@northwork.app?subject=${subject}&body=${bodyText}`;
     setSent(true);
   };
 
@@ -427,15 +427,15 @@ function Contact() {
           <aside className="contact-aside">
             <a
               className="contact-card"
-              href="https://dribbble.com/bighappysmiley"
+              href="https://dribbble.com/northwork"
               target="_blank"
               rel="noopener noreferrer"
             >
               <DribbbleIcon size={26} />
               <span><strong>Dribbble</strong><em>See our work</em></span>
             </a>
-            <a className="contact-card" href="mailto:designs@bighappysmiley.com">
-              <span><strong>Email</strong><em>designs@bighappysmiley.com</em></span>
+            <a className="contact-card" href="mailto:designs@northwork.app">
+              <span><strong>Email</strong><em>designs@northwork.app</em></span>
             </a>
             <a className="contact-card" href="tel:+18452132071">
               <span><strong>Phone</strong><em>(845) 213-2071</em></span>
@@ -457,7 +457,7 @@ function Footer() {
         </span>
         <a
           className="social"
-          href="https://dribbble.com/bighappysmiley"
+          href="https://dribbble.com/northwork"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Northwork on Dribbble"
