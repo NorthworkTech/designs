@@ -156,9 +156,112 @@ function HeroHeadline() {
   );
 }
 
+function BrandGrad({ id }) {
+  return (
+    <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stopColor="#2cd1f5" />
+      <stop offset="0.5" stopColor="#2b5cf0" />
+      <stop offset="1" stopColor="#7c3aed" />
+    </linearGradient>
+  );
+}
+
+/* Abstract line-art backdrop for the hero */
+function HeroArt() {
+  return (
+    <div className="hero-art" aria-hidden="true">
+      <div className="hero-dots" />
+      <svg className="hero-rings" viewBox="0 0 600 600" fill="none">
+        <defs><BrandGrad id="hr" /></defs>
+        {[250, 200, 150, 100].map((r, i) => (
+          <circle key={r} cx="300" cy="300" r={r} stroke="url(#hr)" strokeOpacity={0.55 - i * 0.1} strokeWidth="1.4" />
+        ))}
+        <path d="M90 360 Q 200 230 300 360 T 510 360" stroke="url(#hr)" strokeWidth="3" strokeLinecap="round" opacity="0.85" />
+      </svg>
+    </div>
+  );
+}
+
+/* Per-service abstract graphic shown in the preview window */
+function ServiceArt({ index }) {
+  const gid = `sg${index}`;
+  const graphics = [
+    // 0 Logos & Icons — concentric rounded squares + gradient mark
+    (
+      <g>
+        <rect x="90" y="40" width="140" height="120" rx="24" stroke="var(--ink)" strokeOpacity="0.2" fill="none" strokeWidth="2" />
+        <rect x="118" y="62" width="84" height="76" rx="16" stroke="var(--ink)" strokeOpacity="0.4" fill="none" strokeWidth="2" />
+        <path d="M150 118 L160 94 L172 118 M172 118 L184 94 L196 118" stroke={`url(#${gid})`} strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    ),
+    // 1 Posters & Flyers — overlapping frames
+    (
+      <g>
+        <rect x="80" y="44" width="96" height="120" rx="10" fill={`url(#${gid})`} opacity="0.9" />
+        <rect x="150" y="60" width="96" height="120" rx="10" fill="var(--surface)" stroke="var(--ink)" strokeOpacity="0.5" strokeWidth="2" />
+        <line x1="166" y1="86" x2="230" y2="86" stroke="var(--ink)" strokeOpacity="0.4" strokeWidth="3" strokeLinecap="round" />
+        <line x1="166" y1="104" x2="214" y2="104" stroke="var(--ink)" strokeOpacity="0.25" strokeWidth="3" strokeLinecap="round" />
+      </g>
+    ),
+    // 2 Presentations — slide + bars
+    (
+      <g>
+        <rect x="78" y="44" width="164" height="118" rx="12" stroke="var(--ink)" strokeOpacity="0.3" fill="none" strokeWidth="2" />
+        <rect x="98" y="112" width="18" height="30" rx="4" fill="var(--ink)" opacity="0.25" />
+        <rect x="128" y="96" width="18" height="46" rx="4" fill="var(--ink)" opacity="0.25" />
+        <rect x="158" y="74" width="18" height="68" rx="4" fill={`url(#${gid})`} />
+        <rect x="188" y="104" width="18" height="38" rx="4" fill="var(--ink)" opacity="0.25" />
+      </g>
+    ),
+    // 3 Websites — browser window
+    (
+      <g>
+        <rect x="70" y="46" width="180" height="120" rx="12" stroke="var(--ink)" strokeOpacity="0.3" fill="none" strokeWidth="2" />
+        <path d="M70 72 h180" stroke="var(--ink)" strokeOpacity="0.3" strokeWidth="2" />
+        <circle cx="86" cy="59" r="3.5" fill={`url(#${gid})`} />
+        <circle cx="100" cy="59" r="3.5" fill="var(--ink)" opacity="0.25" />
+        <rect x="88" y="90" width="64" height="40" rx="6" fill={`url(#${gid})`} opacity="0.9" />
+        <line x1="166" y1="94" x2="230" y2="94" stroke="var(--ink)" strokeOpacity="0.35" strokeWidth="4" strokeLinecap="round" />
+        <line x1="166" y1="110" x2="214" y2="110" stroke="var(--ink)" strokeOpacity="0.22" strokeWidth="4" strokeLinecap="round" />
+        <line x1="88" y1="146" x2="230" y2="146" stroke="var(--ink)" strokeOpacity="0.15" strokeWidth="4" strokeLinecap="round" />
+      </g>
+    ),
+    // 4 Business Cards & Stickers — card + sticker
+    (
+      <g>
+        <rect x="74" y="70" width="150" height="92" rx="12" stroke="var(--ink)" strokeOpacity="0.4" fill="var(--surface)" strokeWidth="2" />
+        <line x1="92" y1="96" x2="150" y2="96" stroke="var(--ink)" strokeOpacity="0.4" strokeWidth="3" strokeLinecap="round" />
+        <line x1="92" y1="112" x2="128" y2="112" stroke="var(--ink)" strokeOpacity="0.22" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="206" cy="66" r="30" fill={`url(#${gid})`} />
+        <circle cx="206" cy="66" r="30" stroke="var(--surface)" strokeWidth="4" fill="none" />
+      </g>
+    ),
+  ];
+  return (
+    <svg className="service-art" viewBox="0 0 320 210" fill="none" aria-hidden="true">
+      <defs><BrandGrad id={gid} /></defs>
+      {graphics[index] || graphics[0]}
+    </svg>
+  );
+}
+
+/* Abstract gradient ribbon motif for the dark bands */
+function BandArt() {
+  return (
+    <svg className="band-art" viewBox="0 0 600 400" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+      <defs><BrandGrad id="bda" /></defs>
+      <path d="M-40 300 Q 150 120 320 280 T 640 220" stroke="url(#bda)" strokeWidth="2" opacity="0.5" />
+      <path d="M-40 340 Q 150 160 320 320 T 640 260" stroke="url(#bda)" strokeWidth="2" opacity="0.3" />
+      <circle cx="520" cy="90" r="140" stroke="url(#bda)" strokeWidth="1.5" opacity="0.25" fill="none" />
+      <circle cx="520" cy="90" r="90" stroke="url(#bda)" strokeWidth="1.5" opacity="0.2" fill="none" />
+    </svg>
+  );
+}
+
 function Hero() {
   return (
     <section className="hero" id="top">
+      <HeroArt />
       <div className="hero-content">
         <p className="eyebrow reveal in">Northdraft Studios</p>
         <HeroHeadline />
@@ -219,9 +322,12 @@ function Services() {
           <div className="preview-window">
             <div className="preview-bar"><span /><span /><span /></div>
             <div className="preview-body" key={active}>
-              <div className="preview-num">{s.num}</div>
-              <h3>{s.title}</h3>
-              <p>{s.body}</p>
+              <div className="preview-graphic"><ServiceArt index={active} /></div>
+              <div className="preview-copy">
+                <div className="preview-num">{s.num}</div>
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -297,6 +403,7 @@ function Gallery() {
 function Products() {
   return (
     <section className="band" id="products">
+      <BandArt />
       <Reveal className="band-inner">
         <p className="eyebrow eyebrow-light">Physical Products</p>
         <h2>From the screen to your hands.</h2>
@@ -391,6 +498,7 @@ function Contact() {
 
   return (
     <section className="contact" id="contact">
+      <BandArt />
       <Reveal className="contact-inner">
         <p className="eyebrow eyebrow-light">Contact</p>
         <h2>Let's build something great.</h2>
@@ -474,6 +582,7 @@ function Footer() {
 export default function App() {
   return (
     <>
+      <div className="grain" aria-hidden="true" />
       <Nav />
       <main>
         <Hero />
