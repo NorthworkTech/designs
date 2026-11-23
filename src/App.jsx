@@ -182,64 +182,113 @@ function HeroArt() {
   );
 }
 
-/* Per-service abstract graphic shown in the preview window */
+/* Per-service graphic — rich "finished work" compositions shown in the preview */
 function ServiceArt({ index }) {
-  const gid = `sg${index}`;
+  const G = `sg${index}`;
+  const sans = { fontFamily: '"Bricolage Grotesque", sans-serif' };
+  const serif = { fontFamily: '"EB Garamond", Georgia, serif' };
+  const mark = (x, y, s, color) => (
+    <path
+      d={`M${x} ${y + s} L${x + s * 0.5} ${y} L${x + s} ${y + s} L${x + s * 1.5} ${y}`}
+      fill="none" stroke={color} strokeWidth={s * 0.22} strokeLinecap="round" strokeLinejoin="round"
+    />
+  );
+
   const graphics = [
-    // 0 Logos & Icons — concentric rounded squares + gradient mark
+    // 0 — Brand board
     (
       <g>
-        <rect x="90" y="40" width="140" height="120" rx="24" stroke="var(--ink)" strokeOpacity="0.2" fill="none" strokeWidth="2" />
-        <rect x="118" y="62" width="84" height="76" rx="16" stroke="var(--ink)" strokeOpacity="0.4" fill="none" strokeWidth="2" />
-        <path d="M150 118 L160 94 L172 118 M172 118 L184 94 L196 118" stroke={`url(#${gid})`} strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <rect width="320" height="200" fill="#f1efe9" />
+        <rect x="18" y="26" width="150" height="148" rx="14" fill="#191a1f" />
+        <rect x="58" y="62" width="70" height="70" rx="16" fill={`url(#${G})`} />
+        {mark(74, 82, 26, '#ffffff')}
+        <text x="63" y="156" style={sans} fontSize="13" fontWeight="600" fill="#e9e8e2">northdraft</text>
+        <text x="186" y="52" style={serif} fontSize="26" fontWeight="600" fill="#191a1f">Northdraft</text>
+        <text x="187" y="70" style={sans} fontSize="9" letterSpacing="3" fill="#8a8990">STUDIOS</text>
+        <rect x="186" y="88" width="104" height="7" rx="3.5" fill="#d9d7cf" />
+        <rect x="186" y="102" width="82" height="7" rx="3.5" fill="#e4e2db" />
+        <circle cx="193" cy="146" r="11" fill="#2cd1f5" />
+        <circle cx="219" cy="146" r="11" fill="#2b5cf0" />
+        <circle cx="245" cy="146" r="11" fill="#7c3aed" />
+        <circle cx="271" cy="146" r="11" fill="#191a1f" />
       </g>
     ),
-    // 1 Posters & Flyers — overlapping frames
+    // 1 — Poster
     (
       <g>
-        <rect x="80" y="44" width="96" height="120" rx="10" fill={`url(#${gid})`} opacity="0.9" />
-        <rect x="150" y="60" width="96" height="120" rx="10" fill="var(--surface)" stroke="var(--ink)" strokeOpacity="0.5" strokeWidth="2" />
-        <line x1="166" y1="86" x2="230" y2="86" stroke="var(--ink)" strokeOpacity="0.4" strokeWidth="3" strokeLinecap="round" />
-        <line x1="166" y1="104" x2="214" y2="104" stroke="var(--ink)" strokeOpacity="0.25" strokeWidth="3" strokeLinecap="round" />
+        <rect width="320" height="200" fill={`url(#${G})`} />
+        <circle cx="258" cy="52" r="70" fill="#ffffff" opacity="0.12" />
+        <circle cx="258" cy="52" r="46" fill="none" stroke="#ffffff" strokeOpacity="0.4" strokeWidth="1.5" />
+        <text x="26" y="88" style={serif} fontSize="46" fontWeight="600" fill="#ffffff">Design</text>
+        <text x="26" y="128" style={serif} fontSize="46" fontWeight="600" fontStyle="italic" fill="#ffffff" opacity="0.92">Forward</text>
+        <rect x="26" y="150" width="54" height="3" fill="#ffffff" opacity="0.8" />
+        <text x="26" y="176" style={sans} fontSize="11" letterSpacing="2" fill="#ffffff" opacity="0.85">VOL. 03 — VISUAL IDENTITY</text>
       </g>
     ),
-    // 2 Presentations — slide + bars
+    // 2 — Presentation slide
     (
       <g>
-        <rect x="78" y="44" width="164" height="118" rx="12" stroke="var(--ink)" strokeOpacity="0.3" fill="none" strokeWidth="2" />
-        <rect x="98" y="112" width="18" height="30" rx="4" fill="var(--ink)" opacity="0.25" />
-        <rect x="128" y="96" width="18" height="46" rx="4" fill="var(--ink)" opacity="0.25" />
-        <rect x="158" y="74" width="18" height="68" rx="4" fill={`url(#${gid})`} />
-        <rect x="188" y="104" width="18" height="38" rx="4" fill="var(--ink)" opacity="0.25" />
+        <rect width="320" height="200" fill="#ffffff" />
+        <rect width="104" height="200" fill={`url(#${G})`} />
+        {mark(26, 28, 20, '#ffffff')}
+        <text x="24" y="120" style={serif} fontSize="19" fontWeight="600" fill="#ffffff">Quarterly</text>
+        <text x="24" y="140" style={serif} fontSize="19" fontWeight="600" fill="#ffffff">Review</text>
+        <text x="24" y="176" style={sans} fontSize="9" letterSpacing="2" fill="#ffffff" opacity="0.8">2026 · 01</text>
+        <text x="132" y="52" style={serif} fontSize="22" fontWeight="600" fill="#1d1e22">Results at a glance</text>
+        <rect x="132" y="64" width="150" height="6" rx="3" fill="#e9e7e0" />
+        <rect x="140" y="150" width="22" height="18" rx="3" fill="#cfe9f7" />
+        <rect x="172" y="128" width="22" height="40" rx="3" fill="#8bb4f5" />
+        <rect x="204" y="104" width="22" height="64" rx="3" fill="#2b5cf0" />
+        <rect x="236" y="86" width="22" height="82" rx="3" fill="#7c3aed" />
+        <line x1="132" y1="170" x2="288" y2="170" stroke="#e3e1da" strokeWidth="1.5" />
       </g>
     ),
-    // 3 Websites — browser window
+    // 3 — Website mockup
     (
       <g>
-        <rect x="70" y="46" width="180" height="120" rx="12" stroke="var(--ink)" strokeOpacity="0.3" fill="none" strokeWidth="2" />
-        <path d="M70 72 h180" stroke="var(--ink)" strokeOpacity="0.3" strokeWidth="2" />
-        <circle cx="86" cy="59" r="3.5" fill={`url(#${gid})`} />
-        <circle cx="100" cy="59" r="3.5" fill="var(--ink)" opacity="0.25" />
-        <rect x="88" y="90" width="64" height="40" rx="6" fill={`url(#${gid})`} opacity="0.9" />
-        <line x1="166" y1="94" x2="230" y2="94" stroke="var(--ink)" strokeOpacity="0.35" strokeWidth="4" strokeLinecap="round" />
-        <line x1="166" y1="110" x2="214" y2="110" stroke="var(--ink)" strokeOpacity="0.22" strokeWidth="4" strokeLinecap="round" />
-        <line x1="88" y1="146" x2="230" y2="146" stroke="var(--ink)" strokeOpacity="0.15" strokeWidth="4" strokeLinecap="round" />
+        <rect width="320" height="200" fill="#f1efe9" />
+        <rect x="0" y="0" width="320" height="34" fill="#ffffff" />
+        {mark(18, 12, 12, '#2b5cf0')}
+        <rect x="150" y="14" width="26" height="6" rx="3" fill="#d9d7cf" />
+        <rect x="186" y="14" width="26" height="6" rx="3" fill="#d9d7cf" />
+        <rect x="258" y="9" width="46" height="16" rx="8" fill={`url(#${G})`} />
+        <text x="24" y="86" style={serif} fontSize="25" fontWeight="600" fill="#1d1e22">Build your</text>
+        <text x="24" y="112" style={serif} fontSize="25" fontWeight="600" fontStyle="italic" fill="#2b5cf0">brand online.</text>
+        <rect x="24" y="128" width="92" height="22" rx="11" fill="#191a1f" />
+        <text x="40" y="143" style={sans} fontSize="10" fontWeight="500" fill="#ffffff">Get started</text>
+        <rect x="190" y="56" width="110" height="112" rx="12" fill={`url(#${G})`} />
+        <circle cx="245" cy="104" r="26" fill="#ffffff" opacity="0.25" />
       </g>
     ),
-    // 4 Business Cards & Stickers — card + sticker
+    // 4 — Business card + stickers
     (
       <g>
-        <rect x="74" y="70" width="150" height="92" rx="12" stroke="var(--ink)" strokeOpacity="0.4" fill="var(--surface)" strokeWidth="2" />
-        <line x1="92" y1="96" x2="150" y2="96" stroke="var(--ink)" strokeOpacity="0.4" strokeWidth="3" strokeLinecap="round" />
-        <line x1="92" y1="112" x2="128" y2="112" stroke="var(--ink)" strokeOpacity="0.22" strokeWidth="3" strokeLinecap="round" />
-        <circle cx="206" cy="66" r="30" fill={`url(#${gid})`} />
-        <circle cx="206" cy="66" r="30" stroke="var(--surface)" strokeWidth="4" fill="none" />
+        <rect width="320" height="200" fill="#eceae4" />
+        <rect x="36" y="74" width="172" height="104" rx="12" fill="#191a1f" />
+        <rect x="30" y="64" width="172" height="104" rx="12" fill={`url(#${G})`} />
+        {mark(48, 82, 16, '#ffffff')}
+        <text x="48" y="132" style={serif} fontSize="17" fontWeight="600" fill="#ffffff">Ada Rivera</text>
+        <text x="48" y="148" style={sans} fontSize="9" letterSpacing="1" fill="#ffffff" opacity="0.85">CREATIVE DIRECTOR</text>
+        <rect x="48" y="156" width="96" height="4" rx="2" fill="#ffffff" opacity="0.5" />
+        <circle cx="250" cy="58" r="34" fill="#ffffff" />
+        <circle cx="250" cy="58" r="34" fill="none" stroke="#e3e1da" strokeWidth="1" />
+        {mark(236, 48, 18, '#2b5cf0')}
+        <circle cx="276" cy="120" r="30" fill={`url(#${G})`} />
+        <circle cx="276" cy="120" r="30" fill="none" stroke="#ffffff" strokeWidth="3" />
+        {mark(264, 112, 16, '#ffffff')}
       </g>
     ),
   ];
+
   return (
-    <svg className="service-art" viewBox="0 0 320 210" fill="none" aria-hidden="true">
-      <defs><BrandGrad id={gid} /></defs>
+    <svg className="service-art" viewBox="0 0 320 200" aria-hidden="true">
+      <defs>
+        <linearGradient id={G} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#2cd1f5" />
+          <stop offset="0.5" stopColor="#2b5cf0" />
+          <stop offset="1" stopColor="#7c3aed" />
+        </linearGradient>
+      </defs>
       {graphics[index] || graphics[0]}
     </svg>
   );
