@@ -5,6 +5,7 @@ const TOOLS = [
   { to: '/tools/palette', title: 'Colour palette generator', blurb: 'Spin up a balanced colour palette and copy the hex codes.' },
   { to: '/tools/fonts', title: 'Font pairing tool', blurb: 'Browse designer-approved heading + body combinations.' },
   { to: '/tools/mockup', title: 'Logo mockup previewer', blurb: 'Drop in a logo and see it on a card, an app icon and a sign.' },
+  { to: '/tools/kit', title: 'Colour & font kit export', blurb: 'Export your brand styles for Figma, Canva, CSS and Word.' },
 ];
 
 export default function ToolsHub() {

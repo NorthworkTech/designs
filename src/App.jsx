@@ -6,6 +6,8 @@ import ToolsHub from './pages/ToolsHub.jsx';
 import Palette from './pages/tools/Palette.jsx';
 import FontPairing from './pages/tools/FontPairing.jsx';
 import LogoMockup from './pages/tools/LogoMockup.jsx';
+import KitExport from './pages/tools/KitExport.jsx';
+import GuidePocket from './pages/GuidePocket.jsx';
 
 /* Editable: shown in the hero availability pill */
 const AVAILABILITY = 'December 3';
@@ -682,6 +684,12 @@ function Footer() {
           <img src="/logo.png" alt="" className="brand-logo" />
           Northdraft<span>Studios</span>
         </span>
+        <nav className="footer-links">
+          <Link to="/quote">Get a quote</Link>
+          <Link to="/tools">Free tools</Link>
+          <Link to="/guide-pocket">Guide &amp; Pocket</Link>
+          <a href="/#faq">FAQ</a>
+        </nav>
         <a
           className="social"
           href="https://dribbble.com/northwork"
@@ -708,6 +716,8 @@ export default function App() {
       <Route path="/tools/palette" element={<Palette />} />
       <Route path="/tools/fonts" element={<FontPairing />} />
       <Route path="/tools/mockup" element={<LogoMockup />} />
+      <Route path="/tools/kit" element={<KitExport />} />
+      <Route path="/guide-pocket" element={<GuidePocket />} />
     </Routes>
   );
 }
