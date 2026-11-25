@@ -42,6 +42,11 @@ const SERVICES = [
 // Images live in /public/gallery/. Add entries here as work is added.
 const GALLERY = [];
 
+/* Case studies — add entries to switch on the "Our Work" section.
+   Shape: { id, title, type, client, brief, result, quote, before, after }
+   Put images in /public/work/ and reference as "/work/<file>". */
+const CASE_STUDIES = [];
+
 const FAQS = [
   {
     q: 'What services does Northdraft Studios offer?',
@@ -128,7 +133,7 @@ function Nav() {
         </a>
         <nav className="nav-links">
           <a href="#services">Services</a>
-          {GALLERY.length > 0 && <a href="#work">Work</a>}
+          {CASE_STUDIES.length > 0 && <a href="#work">Work</a>}
           <a href="#products">Products</a>
           <a href="#reviews">Reviews</a>
           <a href="#faq">FAQ</a>
@@ -399,6 +404,57 @@ function Services() {
   );
 }
 
+function CaseStudies() {
+  const [filter, setFilter] = useState('All');
+  const [open, setOpen] = useState(null);
+  if (CASE_STUDIES.length === 0) return null;
+
+  const types = ['All', ...Array.from(new Set(CASE_STUDIES.map((c) => c.type)))];
+  const shown = CASE_STUDIES.filter((c) => filter === 'All' || c.type === filter);
+  const cs = open != null ? CASE_STUDIES[open] : null;
+
+  return (
+    <section className="section band-white" id="work">
+      <Reveal className="section-head">
+        <p className="eyebrow">Our Work</p>
+        <h2>Selected case studies.</h2>
+      </Reveal>
+      <Reveal className="cs-filters">
+        {types.map((t) => (
+          <button key={t} className={`chip ${filter === t ? 'active' : ''}`} onClick={() => setFilter(t)}>{t}</button>
+        ))}
+      </Reveal>
+      <div className="cs-grid">
+        {shown.map((c) => (
+          <Reveal as="button" className="cs-card" key={c.id} onClick={() => setOpen(CASE_STUDIES.indexOf(c))}>
+            <div className="cs-thumb"><img src={c.after} alt={c.title} loading="lazy" /></div>
+            <div className="cs-meta"><span className="cs-type">{c.type}</span><h3>{c.title}</h3></div>
+          </Reveal>
+        ))}
+      </div>
+
+      {cs && (
+        <div className="cs-modal" onClick={() => setOpen(null)} role="dialog" aria-modal="true">
+          <div className="cs-dialog" onClick={(e) => e.stopPropagation()}>
+            <button className="lightbox-close" onClick={() => setOpen(null)} aria-label="Close">×</button>
+            <div className="cs-ba">
+              <figure><img src={cs.before} alt="Before" /><figcaption>Before</figcaption></figure>
+              <figure><img src={cs.after} alt="After" /><figcaption>After</figcaption></figure>
+            </div>
+            <div className="cs-body">
+              <span className="cs-type">{cs.type}</span>
+              <h3>{cs.title}</h3>
+              <p className="cs-sec"><b>Brief</b> {cs.brief}</p>
+              <p className="cs-sec"><b>Result</b> {cs.result}</p>
+              {cs.quote && <blockquote className="cs-quote">“{cs.quote}”<cite>— {cs.client}</cite></blockquote>}
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function Gallery() {
   const [active, setActive] = useState(null); // index of open lightbox image
 
@@ -664,6 +720,7 @@ function MarketingHome() {
       <main>
         <Hero />
         <Services />
+        <CaseStudies />
         <Gallery />
         <Products />
         <Reviews />

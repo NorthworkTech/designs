@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import PageShell from './PageShell.jsx';
 
 const SERVICES = ['Logo & Brand', 'Poster / Flyer', 'Presentation', 'Website', 'Cards & Stickers', 'Something else'];
@@ -9,10 +9,14 @@ const DEADLINES = ['Flexible', 'Within 2 weeks', 'Within a month', 'Specific dat
 const STEPS = ['Service', 'Project', 'Style', 'Details', 'You'];
 
 export default function BriefWizard() {
+  const [sp] = useSearchParams();
+  const presetService = SERVICES.includes(sp.get('service')) ? sp.get('service') : 'Logo & Brand';
+  const estimate = sp.get('est') || '';
+
   const [step, setStep] = useState(0);
   const [sent, setSent] = useState(false);
   const [f, setF] = useState({
-    service: 'Logo & Brand', business: '', about: '',
+    service: presetService, business: '', about: '',
     vibes: [], colours: '', inspiration: '', deadline: 'Flexible', date: '',
     name: '', email: '',
   });
@@ -38,9 +42,10 @@ export default function BriefWizard() {
       `Colours: ${f.colours || '—'}`,
       `Inspiration: ${f.inspiration || '—'}`,
       `Deadline: ${f.deadline}${f.deadline === 'Specific date' && f.date ? ` (${f.date})` : ''}`,
+      estimate ? `Quote estimate: ${estimate}` : null,
       ``,
       `From: ${f.name} <${f.email}>`,
-    ].join('\n');
+    ].filter((l) => l !== null).join('\n');
     window.location.href = `mailto:designs@northwork.app?subject=${encodeURIComponent(
       `Project brief — ${f.business || f.name}`
     )}&body=${encodeURIComponent(brief)}`;
@@ -54,6 +59,9 @@ export default function BriefWizard() {
           <p className="eyebrow">Project Brief</p>
           <h1>Tell us about it.</h1>
           <p className="quote-sub">A few quick questions become a clean brief for your designer. Takes about a minute.</p>
+          {estimate && (
+            <p className="brief-estimate">From your quote · <strong>{presetService}</strong> · {estimate}</p>
+          )}
         </div>
 
         {sent ? (
