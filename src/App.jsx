@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import QuoteBuilder from './pages/QuoteBuilder.jsx';
 
 const SERVICES = [
   {
@@ -124,7 +126,7 @@ function Nav() {
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </nav>
-        <a href="#contact" className="nav-cta">Get Started</a>
+        <Link to="/quote" className="nav-cta">Get a Quote</Link>
       </div>
     </header>
   );
@@ -319,7 +321,7 @@ function Hero() {
           presentations, and websites. Professional quality, delivered at a price that makes sense.
         </p>
         <div className="hero-actions reveal in" style={{ transitionDelay: '600ms' }}>
-          <a href="#contact" className="btn btn-primary">Get Started</a>
+          <Link to="/quote" className="btn btn-primary">Get an instant quote</Link>
           <a href="#services" className="btn btn-ghost">Explore Services</a>
         </div>
         <p className="hero-meta reveal in" style={{ transitionDelay: '680ms' }}>
@@ -629,6 +631,15 @@ function Footer() {
 }
 
 export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<MarketingHome />} />
+      <Route path="/quote" element={<QuoteBuilder />} />
+    </Routes>
+  );
+}
+
+function MarketingHome() {
   return (
     <>
       <div className="grain" aria-hidden="true" />
