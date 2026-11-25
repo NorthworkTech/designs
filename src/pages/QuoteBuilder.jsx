@@ -187,7 +187,7 @@ export default function QuoteBuilder() {
               <span className="quote-label">Estimated range</span>
               <div className="quote-price">{money(min)} – {money(max)}</div>
               <p className="quote-note">A ballpark, not a bill. Your final quote is confirmed after a quick brief.</p>
-              <a className="btn btn-primary quote-cta" href="/#contact">Start my project →</a>
+              <a className="btn btn-primary quote-cta" href="/start">Start my project →</a>
               <a className="btn btn-ghost" href="/#services">See what's included</a>
             </div>
           </aside>

@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import QuoteBuilder from './pages/QuoteBuilder.jsx';
+import BriefWizard from './pages/BriefWizard.jsx';
+import ToolsHub from './pages/ToolsHub.jsx';
+import Palette from './pages/tools/Palette.jsx';
+import FontPairing from './pages/tools/FontPairing.jsx';
+import LogoMockup from './pages/tools/LogoMockup.jsx';
+
+/* Editable: shown in the hero availability pill */
+const AVAILABILITY = 'December 3';
 
 const SERVICES = [
   {
@@ -124,6 +132,7 @@ function Nav() {
           <a href="#products">Products</a>
           <a href="#reviews">Reviews</a>
           <a href="#faq">FAQ</a>
+          <Link to="/tools">Tools</Link>
           <a href="#contact">Contact</a>
         </nav>
         <Link to="/quote" className="nav-cta">Get a Quote</Link>
@@ -316,6 +325,9 @@ function Hero() {
       <div className="hero-content">
         <p className="eyebrow reveal in">Northdraft Studios</p>
         <HeroHeadline />
+        <p className="availability reveal in" style={{ transitionDelay: '480ms' }}>
+          <span className="avail-dot" /> Booking new projects · Next opening <strong>{AVAILABILITY}</strong>
+        </p>
         <p className="hero-sub reveal in" style={{ transitionDelay: '520ms' }}>
           An online graphic design studio specializing in custom logo design — plus print,
           presentations, and websites. Professional quality, delivered at a price that makes sense.
@@ -635,6 +647,11 @@ export default function App() {
     <Routes>
       <Route path="/" element={<MarketingHome />} />
       <Route path="/quote" element={<QuoteBuilder />} />
+      <Route path="/start" element={<BriefWizard />} />
+      <Route path="/tools" element={<ToolsHub />} />
+      <Route path="/tools/palette" element={<Palette />} />
+      <Route path="/tools/fonts" element={<FontPairing />} />
+      <Route path="/tools/mockup" element={<LogoMockup />} />
     </Routes>
   );
 }
