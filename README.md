@@ -123,6 +123,26 @@ Common edits, all in source — no CMS required:
 ([northwork.app](https://northwork.app)). The wordmark pairs a gradient wave
 mark with an EB Garamond logotype; the product UI uses Bricolage Grotesque.
 
+## Contributing
+
+This is an internal Northwork project. If you're on the team:
+
+1. Create a feature branch from the production branch.
+2. Run `npm run build` and `npm run preview` to verify your change locally.
+3. Open a pull request — Cloudflare Pages builds a preview deployment for every PR.
+
+Keep changes consistent with the existing design tokens and component patterns,
+and avoid adding UI dependencies unless there's a clear need.
+
+## License
+
+© Northdraft Studios / Northwork. All rights reserved.
+
+This repository and its contents — including the Northdraft Studios name, logo,
+and brand assets — are proprietary and provided for authorized use only. No part
+may be copied, modified, distributed, or used to create derivative works without
+prior written permission.
+
 ---
 
 <div align="center">
