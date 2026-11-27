@@ -1,74 +1,130 @@
+<div align="center">
+
 # Northdraft Studios
 
-The official website for **Northdraft Studios** — a graphic design studio
-offering logos, print, presentations, websites, and physical products.
+**The official website for Northdraft Studios — a graphic design studio for logos, brand identity, print, presentations, and websites.**
 
-A clean, editorial single-page site built with **React + Vite**,
-deployed on **Cloudflare Pages** at **designs.northwork.app**.
+Part of the [Northwork](https://northwork.app) ecosystem · Live at **[designs.northwork.app](https://designs.northwork.app)**
+
+Built with React · Vite · Cloudflare Pages
+
+</div>
+
+---
+
+## Overview
+
+A fast, editorial single-page application that doubles as a marketing site and a
+lightweight client toolkit. Alongside the studio's services, it offers an instant
+quote builder, a guided project-brief wizard, and a small suite of free design
+tools — all static, with no tracking and no sign-up required.
+
+## Features
+
+- **Marketing site** — hero, services (interactive list with live previews),
+  physical products, reviews, and an FAQ with structured data for search.
+- **Instant quote builder** (`/quote`) — pick a service and options for a live
+  estimate, then flow straight into a brief.
+- **Project brief wizard** (`/start`) — a short, guided form that compiles a
+  clean brief for the design team.
+- **Free tools** (`/tools`) — colour palette generator, font pairing, logo
+  mockup previewer, and a colour & font kit exporter (CSS, Figma, Canva, Word).
+- **Design for Guide & Pocket** (`/guide-pocket`) — a dedicated service page for
+  app icons, Pocket e-ink screens, and store screenshots.
+- **Accessible & responsive** — semantic markup, keyboard support, and
+  `prefers-reduced-motion` handling throughout.
 
 ## Tech stack
 
-- [React 18](https://react.dev/)
-- [Vite 6](https://vitejs.dev/) (dev server + build)
-- Plain CSS (design tokens in `:root`), no UI framework
+| | |
+|---|---|
+| **Framework** | [React 18](https://react.dev/) |
+| **Build** | [Vite 6](https://vitejs.dev/) |
+| **Routing** | [React Router 7](https://reactrouter.com/) |
+| **Styling** | Hand-written CSS with design tokens in `:root` (no UI framework) |
+| **Hosting** | [Cloudflare Pages](https://pages.cloudflare.com/) (continuous deploy) |
+
+## Getting started
+
+Requires **Node.js 20+**.
+
+```bash
+npm install      # install dependencies
+npm run dev      # start the dev server (http://localhost:5173)
+npm run build    # production build → dist/
+npm run preview  # preview the production build locally
+```
 
 ## Project structure
 
-| Path | Purpose |
-|------|---------|
-| `index.html` | Vite entry HTML |
-| `src/main.jsx` | App bootstrap |
-| `src/App.jsx` | Page sections (Nav, Hero, Services, Products, Reviews, FAQ, Contact, Footer) |
-| `src/styles.css` | Styling and responsive layout |
-| `public/logo.svg` | Brand logo + favicon (placeholder — swap for the real Northdraft Studios logo) |
-| `public/_redirects` | Cloudflare Pages SPA fallback |
-
-## Local development
-
-```bash
-npm install
-npm run dev      # start dev server at http://localhost:5173
+```
+designs/
+├─ index.html              # Vite entry
+├─ public/
+│  ├─ logo.png             # brand mark (nav, favicon, OG)
+│  ├─ og-image.png         # social share image
+│  ├─ _redirects           # Cloudflare Pages SPA fallback
+│  ├─ robots.txt
+│  └─ sitemap.xml
+└─ src/
+   ├─ main.jsx             # app bootstrap + router
+   ├─ App.jsx              # marketing home + route definitions
+   ├─ styles.css           # design tokens + all styling
+   └─ pages/
+      ├─ QuoteBuilder.jsx  # /quote
+      ├─ BriefWizard.jsx   # /start
+      ├─ ToolsHub.jsx      # /tools
+      ├─ GuidePocket.jsx   # /guide-pocket
+      └─ tools/            # palette, font pairing, logo mockup, kit export
 ```
 
-## Production build
+### Routes
 
-```bash
-npm run build    # outputs static site to dist/
-npm run preview  # preview the built site locally
-```
+| Path | Page |
+|------|------|
+| `/` | Marketing home |
+| `/quote` | Instant quote builder |
+| `/start` | Project brief wizard |
+| `/tools` | Free tools hub |
+| `/tools/palette` · `/tools/fonts` · `/tools/mockup` · `/tools/kit` | Individual tools |
+| `/guide-pocket` | Design for Guide & Pocket |
 
-## Deploy to Cloudflare Pages
+## Deployment
 
-**Git-based (recommended, continuous deploy):**
+The site deploys to **Cloudflare Pages** via Git integration — every push to the
+production branch triggers a build and deploy.
 
-1. In the [Cloudflare dashboard](https://dash.cloudflare.com/) → **Workers & Pages → Create → Pages → Connect to Git**.
-2. Pick the `bighappysmiley/designs` repo and this branch.
-3. Build settings:
-   - **Framework preset:** Vite (or None)
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-4. **Save and Deploy.** Every push redeploys. `public/_redirects` handles SPA routing.
-5. **Custom domain:** project → **Custom domains → Set up a domain** → `designs.northwork.app`
-   (Cloudflare adds the DNS record automatically if `northwork.app` is on this account).
+**Build settings**
 
-**CLI (optional):**
+| Setting | Value |
+|---|---|
+| Framework preset | Vite |
+| Build command | `npm run build` |
+| Output directory | `dist` |
 
-```bash
-npm install -g wrangler
-npm run build
-wrangler pages deploy dist --project-name=northwork
-```
+SPA routing is handled by `public/_redirects`. The custom domain
+`designs.northwork.app` is managed in the Cloudflare Pages project settings.
 
-## Content sections
+## Configuration
 
-- **Hero** — brand intro and primary call to action
-- **Services** — list + live preview (Logos, Posters & Flyers, Presentations, Websites, Business Cards & Stickers)
-- **Products** — physical product offering (the only "Get a Quote")
-- **Reviews** — client testimonial
-- **FAQ** — common questions (with FAQ structured data)
-- **Contact** — message form (opens an email draft) plus Dribbble, email, phone
+Common edits, all in source — no CMS required:
 
-## Editing
+| Change | Where |
+|---|---|
+| Services & copy | `SERVICES` in `src/App.jsx` |
+| Quote pricing | `SERVICES` / `RUSH_MULTIPLIER` in `src/pages/QuoteBuilder.jsx` |
+| Studio availability | `AVAILABILITY` in `src/App.jsx` |
+| Case studies | `CASE_STUDIES` in `src/App.jsx` (section appears once populated) |
+| Brand colours, type & spacing | design tokens under `:root` in `src/styles.css` |
 
-Service copy lives in the `SERVICES` array in `src/App.jsx`. Brand colors and
-spacing are CSS custom properties at the top of `src/styles.css` (`:root`).
+## Brand
+
+**Northdraft Studios** is the design studio within the **Northwork** ecosystem
+([northwork.app](https://northwork.app)). The wordmark pairs a gradient wave
+mark with an EB Garamond logotype; the product UI uses Bricolage Grotesque.
+
+---
+
+<div align="center">
+<sub>© Northdraft Studios · Northwork</sub>
+</div>
